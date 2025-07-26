@@ -59,11 +59,11 @@ pygame.draw.rect(
 
 player = pygame.image.load("player.png")
 player_location = player.get_rect()
-player_location.center = right_border_x_axis - 120, height * 0.2
+player_location.center = right_border_x_axis - random.randint(120, 480), height * 0.2
 
 coin = pygame.image.load("coin.png")
 coin_location = coin.get_rect()
-coin_location.center = left_border_x_axis + 120, height * 0.4
+coin_location.center = left_border_x_axis + random.randint(120, 480), height * 0.4
 
 pygame.display.update()
 
