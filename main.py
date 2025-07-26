@@ -9,51 +9,52 @@ canvas_border_w = int(width / 80)
 left_border_x_axis = width / 2 - canvas_w / 2
 right_border_x_axis = width / 2 + canvas_w / 2
 
+def generate_map():
+    # Graphics
+
+    # Canvas
+    pygame.draw.rect(
+        screen, 
+        (0, 0, 0), 
+        (width / 2 - canvas_w / 2, 15, canvas_w, height - 30)
+    )
+
+    # Canvas borders
+
+    # Top
+    pygame.draw.rect(
+        screen, 
+        (255, 255, 255), 
+        (left_border_x_axis, 15, canvas_w, 15)
+    )
+
+    # Bottom
+    pygame.draw.rect(
+        screen, 
+        (255, 255, 255), 
+        (left_border_x_axis, height - 30, canvas_w, 15)
+    )
+
+    # Left
+    pygame.draw.rect(
+        screen, 
+        (255, 255, 255), 
+        (left_border_x_axis, 15, canvas_border_w, height - 30)
+    )
+
+    # Right
+    pygame.draw.rect(
+        screen, 
+        (255, 255, 255), 
+        (right_border_x_axis, 15, canvas_border_w, height - 30)
+    )
+
 pygame.init()
 
 pygame.display.set_caption("Snake Game")
 
 screen = pygame.display.set_mode(window_size)
 screen.fill((50, 50, 50))
-
-# Graphics
-
-# Canvas
-pygame.draw.rect(
-    screen, 
-    (0, 0, 0), 
-    (width / 2 - canvas_w / 2, 15, canvas_w, height - 30)
-)
-
-# Canvas borders
-
-# Top
-pygame.draw.rect(
-    screen, 
-    (255, 255, 255), 
-    (left_border_x_axis, 15, canvas_w, 15)
-)
-
-# Bottom
-pygame.draw.rect(
-    screen, 
-    (255, 255, 255), 
-    (left_border_x_axis, height - 30, canvas_w, 15)
-)
-
-# Left
-pygame.draw.rect(
-    screen, 
-    (255, 255, 255), 
-    (left_border_x_axis, 15, canvas_border_w, height - 30)
-)
-
-# Right
-pygame.draw.rect(
-    screen, 
-    (255, 255, 255), 
-    (right_border_x_axis, 15, canvas_border_w, height - 30)
-)
 
 # Player and coin images
 
@@ -73,6 +74,9 @@ while running:
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
+            
+    # Map generation
+    generate_map()
             
     # Drawing the entities in the map
     screen.blit(player, player_location)
