@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+import random
 
 # General settings
 window_size = width, height = (1280, 720)
@@ -54,6 +55,16 @@ pygame.draw.rect(
     (right_border_x_axis, 15, canvas_border_w, height - 30)
 )
 
+# Player and coin images
+
+player = pygame.image.load("player.png")
+player_location = player.get_rect()
+player_location.center = right_border_x_axis - 120, height * 0.2
+
+coin = pygame.image.load("coin.png")
+coin_location = coin.get_rect()
+coin_location.center = left_border_x_axis + 120, height * 0.4
+
 pygame.display.update()
 
 running = True
@@ -62,5 +73,11 @@ while running:
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
+            
+    # Drawing the entities in the map
+    screen.blit(player, player_location)
+    screen.blit(coin, coin_location)
+    
+    pygame.display.update()
 
 pygame.quit()
