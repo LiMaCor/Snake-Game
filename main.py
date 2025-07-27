@@ -4,8 +4,8 @@ from pygame.math import Vector2
 
 class COIN():
     def __init__(self):
-        self.x = 0
-        self.y = 0
+        self.x = random.randint(0, cell_number - 1)
+        self.y = random.randint(0, cell_number - 1)
         self.position = Vector2(self.x, self.y)
         
     def draw_coin(self):
