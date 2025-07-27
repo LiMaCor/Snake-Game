@@ -4,14 +4,14 @@ from pygame.math import Vector2
 
 class COIN():
     def __init__(self):
-        self.x = 5
-        self.y = 3
+        self.x = 0
+        self.y = 0
         self.position = Vector2(self.x, self.y)
         
     def draw_coin(self):
         coin_rect = pygame.Rect(
-            self.position.x, 
-            self.position.y, 
+            self.position.x * cell_size, 
+            self.position.y * cell_size, 
             cell_size, 
             cell_size
         )
