@@ -7,6 +7,16 @@ class COIN():
         self.x = 5
         self.y = 3
         self.position = Vector2(self.x, self.y)
+        
+    def draw_coin(self):
+        coin_rect = pygame.Rect(
+            self.position.x, 
+            self.position.y, 
+            cell_size, 
+            cell_size
+        )
+        
+        pygame.draw.rect(screen, (247, 230, 72), coin_rect)
 
 # General settings
 cell_size = 40
@@ -22,6 +32,8 @@ frames_per_second = pygame.time.Clock()
 
 screen = pygame.display.set_mode(window_size)
 
+coin = COIN()
+
 running = True
 
 while running:
@@ -30,6 +42,7 @@ while running:
             running = False
     
     screen.fill((50, 50, 50))
+    coin.draw_coin()
     pygame.display.update()
     frames_per_second.tick(60)
 
