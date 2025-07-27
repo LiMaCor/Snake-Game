@@ -14,9 +14,6 @@ pygame.display.set_caption("Snake Game")
 frames_per_second = pygame.time.Clock()
 
 screen = pygame.display.set_mode(window_size)
-screen.fill((50, 50, 50))
-
-pygame.display.update()
 
 running = True
 
@@ -25,6 +22,7 @@ while running:
         if event.type == QUIT:
             running = False
     
+    screen.fill((50, 50, 50))
     pygame.display.update()
     frames_per_second.tick(60)
 
