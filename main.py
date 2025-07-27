@@ -1,5 +1,12 @@
 import pygame, sys, random
 from pygame.locals import *
+from pygame.math import Vector2
+
+class COIN():
+    def __init__(self):
+        self.x = 5
+        self.y = 3
+        self.position = Vector2(self.x, self.y)
 
 # General settings
 cell_size = 40
