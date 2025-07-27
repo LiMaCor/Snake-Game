@@ -25,10 +25,11 @@ class PLAYER():
     def __init__(self):
         self.body = [
             Vector2(5, 10), 
-            Vector2(6, 10), 
-            Vector2(7, 10)
+            Vector2(4, 10), 
+            Vector2(3, 10)
         ]
         self.direction = Vector2(1, 0)
+        self.new_body_part = False
         
     def draw_player(self):
         for block in self.body:
@@ -45,9 +46,19 @@ class PLAYER():
             pygame.draw.rect(screen, (65, 179, 20), block_rect)
             
     def move_player(self):
-        body_copy = self.body[:-1]
-        body_copy.insert(0, body_copy[0] + self.direction)
-        self.body = body_copy[:]
+        if self.new_body_part:
+            body_copy = self.body[:]
+            body_copy.insert(0, body_copy[0] + self.direction)
+            self.body = body_copy[:]
+            
+            self.new_body_part = False
+        else:
+            body_copy = self.body[:-1]
+            body_copy.insert(0, body_copy[0] + self.direction)
+            self.body = body_copy[:]
+        
+    def add_body(self):
+        self.new_body_part = True
 
 class MAIN():
     def __init__(self):
@@ -57,6 +68,7 @@ class MAIN():
     def update(self):
         self.player.move_player()
         self.check_collision()
+        self.check_fail()
         
     def draw_elements(self):
         self.coin.draw_coin()
@@ -65,6 +77,15 @@ class MAIN():
     def check_collision(self):
         if self.coin.position == self.player.body[0]:
             self.coin.randomize()
+            self.player.add_body()
+            
+    def check_fail(self):
+        if not 0 <= self.player.body[0].x < cell_number or not 0 <= self.player.body[0].y < cell_number:
+            self.game_over()
+    
+    def game_over(self):
+        pygame.quit()
+        sys.exit()
 
 # General settings
 cell_size = 40
