@@ -65,10 +65,24 @@ player = PLAYER()
 
 running = True
 
+SCREEN_UPDATE = pygame.USEREVENT
+pygame.time.set_timer(SCREEN_UPDATE, 150)
+
 while running:
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
+        if event.type == SCREEN_UPDATE:
+            player.move_player()
+        if event.type == pygame.KEYDOWN:
+            if event.key in [K_UP, K_w]:
+                player.direction = Vector2(0, -1)
+            if event.key in [K_DOWN, K_s]:
+                player.direction = Vector2(0, 1)
+            if event.key in [K_LEFT, K_a]:
+                player.direction = Vector2(-1, 0)
+            if event.key in [K_RIGHT, K_d]:
+                player.direction = Vector2(1, 0)
     
     screen.fill((50, 50, 50))
     coin.draw_coin()
