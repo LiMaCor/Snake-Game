@@ -82,6 +82,10 @@ class MAIN():
     def check_fail(self):
         if not 0 <= self.player.body[0].x < cell_number or not 0 <= self.player.body[0].y < cell_number:
             self.game_over()
+            
+        for block in self.player.body[1:]:
+            if block == self.player.body[0]:
+                self.game_over()
     
     def game_over(self):
         pygame.quit()
