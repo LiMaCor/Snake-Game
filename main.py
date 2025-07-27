@@ -4,9 +4,7 @@ from pygame.math import Vector2
 
 class COIN():
     def __init__(self):
-        self.x = random.randint(0, cell_number - 1)
-        self.y = random.randint(0, cell_number - 1)
-        self.position = Vector2(self.x, self.y)
+        self.randomize()
         
     def draw_coin(self):
         coin_rect = pygame.Rect(
@@ -17,6 +15,11 @@ class COIN():
         )
         
         pygame.draw.rect(screen, (247, 230, 72), coin_rect)
+        
+    def randomize(self):
+        self.x = random.randint(0, cell_number - 1)
+        self.y = random.randint(0, cell_number - 1)
+        self.position = Vector2(self.x, self.y)
 
 class PLAYER():
     def __init__(self):
@@ -53,10 +56,15 @@ class MAIN():
         
     def update(self):
         self.player.move_player()
+        self.check_collision()
         
     def draw_elements(self):
         self.coin.draw_coin()
         self.player.draw_player()
+        
+    def check_collision(self):
+        if self.coin.position == self.player.body[0]:
+            self.coin.randomize()
 
 # General settings
 cell_size = 40
