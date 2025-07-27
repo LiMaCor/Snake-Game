@@ -120,13 +120,17 @@ while running:
             main_game.update()
         if event.type == pygame.KEYDOWN:
             if event.key in [K_UP, K_w]:
-                main_game.player.direction = Vector2(0, -1)
+                if main_game.player.direction.y != 1:
+                    main_game.player.direction = Vector2(0, -1)
             if event.key in [K_DOWN, K_s]:
-                main_game.player.direction = Vector2(0, 1)
+                if main_game.player.direction.y != -1:
+                    main_game.player.direction = Vector2(0, 1)
             if event.key in [K_LEFT, K_a]:
-                main_game.player.direction = Vector2(-1, 0)
+                if main_game.player.direction.x != 1:
+                    main_game.player.direction = Vector2(-1, 0)
             if event.key in [K_RIGHT, K_d]:
-                main_game.player.direction = Vector2(1, 0)
+                if main_game.player.direction.x != -1:
+                    main_game.player.direction = Vector2(1, 0)
     
     screen.fill((50, 50, 50))
     main_game.draw_elements()
