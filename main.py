@@ -1,6 +1,5 @@
-import pygame
+import pygame, sys, random
 from pygame.locals import *
-import random
 
 # General settings
 window_size = width, height = (1280, 720)
@@ -85,3 +84,4 @@ while running:
     pygame.display.update()
 
 pygame.quit()
+sys.exit()
